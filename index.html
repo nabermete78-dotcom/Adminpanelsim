@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Panel Simülasyonu</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">AdminSim</div>
+      <nav>
+        <a href="#" class="active">Pano</a>
+        <a href="#">Kullanıcılar</a>
+        <a href="#">Ayarlar</a>
+        <a href="#">Raporlar</a>
+        <a href="#">Destek</a>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="toggleTheme">Karanlık Mod</button>
+        <button id="collapseSidebar">Daralt</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <input type="search" id="searchInput" placeholder="Ara..." />
+        </div>
+        <div class="top-actions">
+          <button id="notifBtn">Bildirimler <span id="notifBadge" class="badge">3</span></button>
+          <div class="user">Admin <img src="https://via.placeholder.com/32" alt="avatar" /></div>
+        </div>
+      </header>
+
+      <section class="content">
+        <h1>Pano</h1>
+
+        <div class="cards">
+          <div class="card">
+            <div class="card-title">Toplam Kullanıcı</div>
+            <div class="card-value" id="statUsers">—</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Aktif Oturumlar</div>
+            <div class="card-value" id="statSessions">—</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Gelir (Aylık)</div>
+            <div class="card-value" id="statRevenue">—</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Hata Bildirimi</div>
+            <div class="card-value" id="statErrors">—</div>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="panel">
+            <h2>Aktiviteler (7 gün)</h2>
+            <canvas id="activityChart" height="150"></canvas>
+          </div>
+
+          <div class="panel">
+            <h2>Yeni Kullanıcılar</h2>
+            <table class="table" id="usersTable">
+              <thead>
+                <tr><th>#</th><th>İsim</th><th>Email</th><th>Rol</th><th>Durum</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <div class="table-controls">
+              <button id="prevPage">Önceki</button>
+              <span id="pageInfo">1 / 1</span>
+              <button id="nextPage">Sonraki</button>
+              <button id="openAddUser">Kullanıcı Ekle</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">© 2026 AdminSim</footer>
+    </main>
+  </div>
+
+  <!-- Modal: Add User -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h3>Yeni Kullanıcı Ekle</h3>
+      <form id="addUserForm">
+        <label>İsim <input name="name" required /></label>
+        <label>Email <input name="email" type="email" required /></label>
+        <label>Rol
+          <select name="role">
+            <option>Üye</option>
+            <option>Yönetici</option>
+            <option>Destek</option>
+          </select>
+        </label>
+        <div class="modal-actions">
+          <button type="button" id="closeModal">Kapat</button>
+          <button type="submit">Ekle</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
